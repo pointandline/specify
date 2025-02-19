@@ -29,7 +29,7 @@ const paths = [
   { d: "M109.698 109.332c-24.408 24.407-51.12 37.268-59.663 28.726-8.542-8.543 4.319-35.255 28.727-59.662 24.407-24.408 51.12-37.27 59.662-28.727 8.543 8.543-4.319 35.255-28.726 59.663z", strokeDasharray: "280.7110900878906" },
 ];
 
-const SphereAnimation = ({ onButtonClick }) => {
+export default function SphereAnimation({ onButtonClick }) {
   const sphereEl = useRef(null);
   const spherePathEls = useRef([]);
   const sphereButtonContainerRef = useRef(null);
@@ -120,38 +120,32 @@ const SphereAnimation = ({ onButtonClick }) => {
     const animationWrapper = animationWrapperRef.current;
 
     // make sure the DOM element for animationWrapper is actually loaded
-
     if (animationWrapper) {
-      // Start the blur "warble" animation immediately after page load
       const blurAnimation = anime({
         targets: animationWrapper,
         filter: [
-          { value: 'blur(4em)', duration: 0 },    // Start with 4em blur (instant)
-          { value: 'blur(2em)', duration: 3000 },  // Transition to 2em blur
-          { value: 'blur(6em)', duration: 1000 },  // Then to 5em blur
-          { value: 'blur(3em)', duration: 1000 },  // Then to 3em blur
-          { value: 'blur(5em)', duration: 4000 },  // Back to 4em blur to complete the cycle
+          { value: 'blur(4em)', duration: 0 },
+          { value: 'blur(2em)', duration: 3000 },
+          { value: 'blur(6em)', duration: 1000 },
+          { value: 'blur(3em)', duration: 1000 },
+          { value: 'blur(1em)', duration: 4000 },
         ],
-        loop: true,       // Infinite looping of the warble effect
-        easing: 'easeInQuad', // Smooth easing for the warble
+        loop: true,
+        easing: 'easeInQuad',
       });
 
-      // Handle mouse enter: clear the blur effect
       const handleMouseEnter = () => {
-        blurAnimation.pause();  // Stop the animation
-        animationWrapper.style.filter = 'blur(0)';  // Set blur to 0 immediately
+        blurAnimation.pause();
+        animationWrapper.style.filter = 'blur(0)';
       };
 
-      // Handle mouse leave: resume the blur warble animation
       const handleMouseLeave = () => {
-        blurAnimation.play();   // Resume the animation
+        blurAnimation.play();
       };
 
-      // Add event listeners for hover actions
       animationWrapper.addEventListener('mouseenter', handleMouseEnter);
       animationWrapper.addEventListener('mouseleave', handleMouseLeave);
 
-      // Cleanup event listeners on component unmount
       return () => {
         animationWrapper.removeEventListener('mouseenter', handleMouseEnter);
         animationWrapper.removeEventListener('mouseleave', handleMouseLeave);
@@ -163,7 +157,7 @@ const SphereAnimation = ({ onButtonClick }) => {
   const handleButtonClick = () => {
     if (sphereButtonContainerRef.current) {
       // First, we call the parent's onButtonClick, which hides the homepage text.
-      // It's the prop wepassed to the SphereAnimation functional component.
+      // It's the prop we passed to the SphereAnimation functional component.
       onButtonClick();
       // Then, we go ahead and trigger the animation on the button itself.
       anime({
@@ -211,5 +205,3 @@ const SphereAnimation = ({ onButtonClick }) => {
     </div>
   );
 };
-
-export default SphereAnimation;
