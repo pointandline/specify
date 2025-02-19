@@ -1,4 +1,42 @@
 .animationWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
     margin-top: 3em;
     margin-bottom: 3em;
+    filter: blur(4em);
+    transition: 0.7s filter linear;
+    z-index: 1;
+}
+
+.animationWrapper:hover {
+    filter: blur(0);
+}
+
+.sphereAnimation {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.sphereButtonContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    filter: blur(0.15em);
+    transition: 0.4s filter linear;
+}
+
+.sphereButtonContainer:hover {
+    filter: blur(0em);
+}
+
+.sphereButton {
+    width: 200px;
+    height: 200px;
+    font-size: 1em;
 }

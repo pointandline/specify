@@ -1,5 +1,8 @@
-import React, { useRef, useEffect } from 'react';
 import anime from 'animejs';
+import React, { useRef, useEffect } from 'react';
+
+import Button from '@mui/material/Button'
+
 import styles from '@/styles/SphereAnimation.module.css'
 
 const paths = [
@@ -112,6 +115,9 @@ const SphereAnimation = () => {
   return (
     <div className={styles.animationWrapper}>
       <div className={styles.sphereAnimation} ref={sphereEl}>
+        <div className={styles.sphereButtonContainer}>
+          <Button sx={{ borderRadius: '50%', textTransform: 'capitalize' }} className={styles.sphereButton} variant="outlined" color="primary">Begin.</Button>
+        </div>
         <svg className="sphere" viewBox="0 0 440 440" stroke="rgba(80,80,80,.35)">
           <defs>
             <linearGradient id="sphereGradient" x1="25%" x2="25%" y1="0%" y2="75%">

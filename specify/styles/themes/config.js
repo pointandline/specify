@@ -12,7 +12,7 @@ export const themeOptions = {
       main: 'rgba(225, 225, 225, 0.55)',
       light: 'rgba(225, 225, 225, 0.45)',
       dark: '#296640',
-      contrastText: 'rgba(24,47,27,0.7)',
+      contrastText: 'rgba(24,47,27,0.5)',
     },
     secondary: {
       main: 'rgba(63,72,63,0.3)',
@@ -35,6 +35,6 @@ export const themeOptions = {
   },
 };
 
-const theme = createTheme(themeOptions);
+const theme = createMuiTheme(themeOptions);
 
 export { theme }
