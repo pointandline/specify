@@ -11,7 +11,7 @@ export const themeOptions = {
     primary: {
       main: 'rgba(225, 225, 225, 0.55)',
       light: 'rgba(225, 225, 225, 0.45)',
-      dark: '#296640',
+      dark: '#2f7549',
       contrastText: 'rgba(24,47,27,0.5)',
     },
     secondary: {
