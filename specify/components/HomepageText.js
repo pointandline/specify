@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
-import Typography from '@mui/material/Typography'
+import Typography from '@mui/material/Typography';
 
 export default function HomepageText () {
     return (
