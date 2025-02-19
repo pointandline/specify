@@ -16,7 +16,7 @@ export default function MainUICard({ apiParam }) {
       <CardContent className={styles.cardContent} sx={{ p: 1, display: 'flex', flexDirection: 'column', height: '100%' }}>
         <Container sx={{ width: '95%' }}>
 
-          <Typography variant="subtitle2" component="div" color="text.primary.light" sx={{ py: 3, textTransform: 'uppercase', fontWeight: 500,  }}>
+          <Typography variant="subtitle2" component="div" color="text.primary" sx={{ py: 3, textTransform: 'uppercase', fontWeight: 500,  }}>
             {apiParam.name}
           </Typography>
 

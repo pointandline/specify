@@ -4,6 +4,9 @@ import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 import Slider from '@mui/material/Slider'
 
+// it's gross to import component A's module-based CSS into component B,
+// but this should fix the styles not applying — the generated HTML classes are unique!
+import styles from '@/styles/MainUICard.module.css'
 // ughhhhh
 import {
   // slider icons in order of appearance
@@ -99,11 +102,7 @@ export default function RangeSlider({ param }) {
       justifyContent="center"
       alignItems="center"
       width="100%"
-      className="slider"  // this is now decoupled from any {styles.x} references, but i just wanna bang this out
-      sx={{
-        transition: '0.4s filter linear, opacity 0.4s ease',
-        filter: 'blur(0.2em)',
-      }}
+      className={styles.slider}
     >
 
       {LeftIconComponent && (
@@ -131,7 +130,7 @@ export default function RangeSlider({ param }) {
 
       {RightIconComponent && (
         <Box sx={{ mr: 1 }}>
-          <LeftIconComponent style={{ opacity: rightIconOpacity }} />
+          <RightIconComponent style={{ opacity: rightIconOpacity }} />
         </Box>
       )}
 
