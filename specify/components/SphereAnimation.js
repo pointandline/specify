@@ -124,7 +124,7 @@ const SphereAnimation = ({ onButtonClick }) => {
         targets: sphereButtonContainerRef.current,
         opacity: 0,
         filter: 'blur(200px)',
-        duration: 2000,
+        duration: 3000,
         easing: 'easeInOutSine',
       });
     }
