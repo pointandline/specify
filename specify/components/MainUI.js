@@ -9,12 +9,12 @@ export default function MainUI() {
   const { basicParams, musicalParams } = spotifyAPIParams;
 
   return (
-    <Grid container spacing={6} alignItems="stretch">
+    <Grid container rowSpacing={3} alignItems="stretch">
 
       {basicParams && (
         <>
           {basicParams.map(item => (
-            <Grid item sm={12} md={6} key={item.apiName}>
+            <Grid item xs={24} sm={12} md={6} key={item.apiName}>
               <MainUICard apiParam={item} />
             </Grid>
           ))}

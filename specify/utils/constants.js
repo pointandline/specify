@@ -3,8 +3,8 @@ const SpotifyAPIParamData = {
 
     basicParams: [
         [ "Duration", "duration_ms" ],                    // expressed in milliseconds
-        [ "Tempo", "tempo" ],                             // in BPM
         [ "Key", "key", [ -1, 11 ] ],                     // 0=C, 1=C#/Db, 2=D, etc. — no detected key returns -1
+        [ "Tempo", "tempo" ],                             // in BPM
         [ "Mode", "mode", [ 0, 1 ] ],                     // 0=minor, 1=major, no in-between
         [ "Time Signature", "time_signature", [ 3, 7 ] ], // as an estimation of x/4 time, e.g. 3 refers to 3/4 time
         [ "Loudness", "loudness" ],                       // in decibels; range is usually -60db to 0db, but not certain
@@ -13,11 +13,11 @@ const SpotifyAPIParamData = {
     musicalParams: [
         [ "Acoustic", "acousticness", [ 0, 1 ] ],
         [ "Danceable", "danceability", [ 0, 1 ] ],
+        [ "Instrumental", "instrumentalness", [ 0, 1, 0.5 ] ],
         [ "Energetic", "energy", [ 0, 1 ] ],             // intensity, activity - mostly tempo and loudness
-        [ "Vocal <--> Instrumental", "instrumentalness", [ 0, 1, 0.5 ] ],
-        [ "Speechy", "speechiness", [ 0, 1, 0.33 ] ],  // likelihood of spoken words in track, maybe redundant
-        [ "Recorded <--> Live", "liveness", [ 0, 1 ] ],
+        [ "Vocal", "speechiness", [ 0, 1, 0.33 ] ],  // likelihood of spoken words in track, maybe redundant
         [ "Mood", "valence", [ 0, 1 ] ],                 // 0: mostly negative (sad/angry); 1: mostly positive (cheerful/euphoric)
+        [ "Live", "liveness", [ 0, 1 ] ],
     ],
 
     metadataParams: [

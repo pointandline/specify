@@ -45,7 +45,7 @@ export default function Home() {
             if (mainUIRef.current) {
               anime({
                 targets: mainUIRef.current,
-                translateY: ['0%', '150%'],
+                translateY: ['0', '122%'],
                 opacity: [0, 1],
                 duration: 1200,
                 delay: 900,
