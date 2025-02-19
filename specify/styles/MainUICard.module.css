@@ -2,7 +2,8 @@
   opacity: 0.5;
   background-color: rgba(57, 143, 95, 0.05) !important;
   transition: background-color 0.9s ease, opacity 0.9s ease !important;
-  .slider {
+  .slider,
+  .muiIcon {
     transition: 0.9s filter linear;
     filter: blur(0.2em);
   }
@@ -12,7 +13,8 @@
   opacity: 1;
   background-color: rgba(0, 0, 0, 0.13) !important;
   transition: background-color 0.7s ease, opacity 0.7s ease;
-  .slider {
+  .slider,
+  .muiIcon {
     transition: 0.7s filter linear;
     filter: blur(0);
   }

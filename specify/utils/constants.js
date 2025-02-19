@@ -11,7 +11,7 @@ const SpotifyAPIParamData = {
     ],
 
     musicalParams: [
-        [ "Acoustic", "acousticness", [ 0, 1 ],, "Cable", "MicExternalOn" ],
+        [ "Acoustic", "acousticness", [ 0, 1 ], "Cable", "MicExternalOn" ],
         [ "Danceable", "danceability", [ 0, 1 ], "Hotel", "SportsMartialArts" ],
         [ "Instrumental", "instrumentalness", [ 0, 1, 0.5 ], "RecordVoiceOver", "Straighten"],
         [ "Energetic", "energy", [ 0, 1 ], "Battery1Bar", "BatterySaver" ],             // intensity, activity - mostly tempo and loudness
