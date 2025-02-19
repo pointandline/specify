@@ -1,6 +1,12 @@
 import { createTheme, createMuiTheme } from '@mui/material'
 
 export const themeOptions = {
+  typography: {
+    fontFamily: [
+        '"Public Sans"',
+        'sans-serif',
+      ],
+  },
   palette: {
     type: 'light',
     primary: {
@@ -31,5 +37,5 @@ export const themeOptions = {
 };
 
 const theme = createTheme(themeOptions);
-console.log(theme.palette.primary.main)
+
 export { theme }
