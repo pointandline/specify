@@ -8,17 +8,22 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography'
 
 // homebrew imports
-import SphereAnimation from '@/components/SphereAnimation'
-import HomepageText from '@/components/HomepageText'
-
+import HomepageText from '@/components/HomepageText';
+import MainUI from '@/components/MainUI';
+import SphereAnimation from '@/components/SphereAnimation';
+import styles from '@/styles/Home.module.css'
 
 export default function Home() {
   
   const [homepageTextVisible, setHomepageTextVisible] = useState(true);
   const homepageTextRef = useRef(null);
 
+  const [showMainUI, setShowMainUI] = useState(false);
+  const mainUIRef = useRef(null);
+
   const handleButtonClick = () => {
-    // animate the HomepageText sliding off the bottom of the screen
+    // first, animate the HomepageText sliding off the bottom 
+    // (we also pass this as a parent prop to the SphereAnimation functional component, to make the button itself disappear)
     if (homepageTextRef.current) {
       anime({
         targets: homepageTextRef.current,
@@ -27,6 +32,19 @@ export default function Home() {
         duration: 600,
         easing: 'easeInQuad',
         complete: () => setHomepageTextVisible(false),
+      });
+    }
+
+    // then, drop the main UI down from the top of the page
+    // -> start by toggling it visible. this will look jarring at first,
+    // -> but we can smooth this out by setting the parent container's opacity to 0 in Home's CSS.
+    setShowMainUI(true);   
+    if (mainUIRef.current) {
+      anime({
+        targets:mainUIRef.current,
+        opacity: [ 0, 1 ],             // start/end opacity states to fade the elements in
+        duration: 1000,
+        easing: 'easeOutBounce',
       });
     }
   };
@@ -47,6 +65,11 @@ export default function Home() {
             {homepageTextVisible && (
               <Container ref={homepageTextRef}>
                 <HomepageText />
+              </Container>
+            )}
+            {showMainUI && (
+              <Container className={styles.mainUIContainer} ref={mainUIRef}>
+                <MainUI />
               </Container>
             )}
             {/*

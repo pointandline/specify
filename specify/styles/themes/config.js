@@ -1,4 +1,4 @@
-import { createTheme, createMuiTheme } from '@mui/material'
+import { createTheme, createMuiTheme } from '@mui/material/styles'
 
 export const themeOptions = {
   typography: {
@@ -35,6 +35,6 @@ export const themeOptions = {
   },
 };
 
-const theme = createMuiTheme(themeOptions);
+const theme = createTheme(themeOptions);
 
 export { theme }
