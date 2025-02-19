@@ -4,7 +4,6 @@ export const themeOptions = {
   typography: {
     fontFamily: [
         '"Public Sans"',
-        'sans-serif',
       ],
   },
   palette: {
