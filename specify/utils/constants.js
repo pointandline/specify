@@ -1,23 +1,23 @@
 const SpotifyAPIParamData = {
-    // [ readableName, spotifyResponseName, [ optionalMinValue, optionalMaxValue, optionalTippingPoint ] ]
+    // [ readableName, spotifyResponseName, [ optionalMinValue, optionalMaxValue, optionalTippingPoint ], leftIcon, rightIcon ]
 
     basicParams: [
-        [ "Duration", "duration_ms" ],                    // expressed in milliseconds
-        [ "Key", "key", [ -1, 11 ] ],                     // 0=C, 1=C#/Db, 2=D, etc. — no detected key returns -1
-        [ "Tempo", "tempo" ],                             // in BPM
-        [ "Mode", "mode", [ 0, 1 ] ],                     // 0=minor, 1=major, no in-between
-        [ "Time Signature", "time_signature", [ 3, 7 ] ], // as an estimation of x/4 time, e.g. 3 refers to 3/4 time
-        [ "Loudness", "loudness" ],                       // in decibels; range is usually -60db to 0db, but not certain
+        [ "Duration", "duration_ms", null, "HourglassEmpty", "HourglassFull" ],                    // expressed in milliseconds
+        [ "Key", "key", [ -1, 11 ], "Start", "KeyboardTab" ],                     // 0=C, 1=C#/Db, 2=D, etc. — no detected key returns -1
+        [ "Tempo", "tempo", null, "FastRewind", "FastForward" ],                             // in BPM
+        [ "Mode", "mode", [ 0, 1 ], "KeyboardArrowDown", "KeyboardCapsLock" ],                     // 0=minor, 1=major, no in-between
+        [ "Time Signature", "time_signature", [ 3, 7 ], "Filter3", "Filter7" ], // as an estimation of x/4 time, e.g. 3 refers to 3/4 time
+        [ "Loudness", "loudness", null, "VolumeDown", "VolumeUp" ],                       // in decibels; range is usually -60db to 0db, but not certain
     ],
 
     musicalParams: [
-        [ "Acoustic", "acousticness", [ 0, 1 ] ],
-        [ "Danceable", "danceability", [ 0, 1 ] ],
-        [ "Instrumental", "instrumentalness", [ 0, 1, 0.5 ] ],
-        [ "Energetic", "energy", [ 0, 1 ] ],             // intensity, activity - mostly tempo and loudness
-        [ "Vocal", "speechiness", [ 0, 1, 0.33 ] ],  // likelihood of spoken words in track, maybe redundant
-        [ "Mood", "valence", [ 0, 1 ] ],                 // 0: mostly negative (sad/angry); 1: mostly positive (cheerful/euphoric)
-        [ "Live", "liveness", [ 0, 1 ] ],
+        [ "Acoustic", "acousticness", [ 0, 1 ],, "Cable", "MicExternalOn" ],
+        [ "Danceable", "danceability", [ 0, 1 ], "Hotel", "SportsMartialArts" ],
+        [ "Instrumental", "instrumentalness", [ 0, 1, 0.5 ], "RecordVoiceOver", "Straighten"],
+        [ "Energetic", "energy", [ 0, 1 ], "Battery1Bar", "BatterySaver" ],             // intensity, activity - mostly tempo and loudness
+        [ "Vocal", "speechiness", [ 0, 1, 0.33 ], "CommentsDisabled", "Lyrics"],  // likelihood of spoken words in track, maybe redundant
+        [ "Mood", "valence", [ 0, 1 ], "SentimentVeryDissatisfied", "EmojiEmotions" ],                 // 0: mostly negative (sad/angry); 1: mostly positive (cheerful/euphoric)
+        [ "Live", "liveness", [ 0, 1 ], "Album", "Groups" ],
     ],
 
     metadataParams: [
@@ -39,15 +39,17 @@ function buildSpotifyAPIParams(desiredSubgroupNames) {
     desiredSubgroupNames.forEach(subgroupName => {
         if (SpotifyAPIParamData[subgroupName]) {
             result[subgroupName] = SpotifyAPIParamData[subgroupName].map(param => {
-                const [ readableName, apiName, optionalRange ] = param;
+                const [ readableName, apiName, optionalRange, leftIcon, rightIcon ] = param;
 
                 // we'll always have these values:
                 const extractedElement = {
                     name: readableName,
                     apiName: apiName,
+                    leftIcon: leftIcon,
+                    rightIcon: rightIcon,
                 };
 
-                // and need to check for min/max and tippingPoint:
+                // but we need to check for min/max and tippingPoint:
                 if (optionalRange) {
                     if (optionalRange.length === 2) {
                         extractedElement.range = optionalRange;
