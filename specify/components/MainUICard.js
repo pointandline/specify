@@ -6,7 +6,6 @@ import styles from '@/styles/MainUICard.module.css'
 
 
 export default function MainUICard({ apiParam }) {
-  console.log(apiParam)
   const { name, range, tippingPoint } = apiParam;
 
   return (

@@ -1,8 +1,7 @@
 .mainUIContainer {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: -100%;
+  left: 25%;
+  transform: translateY(150%);
   z-index: 1;
-  transition: 1s filter linear;
 }

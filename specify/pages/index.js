@@ -13,6 +13,7 @@ import MainUI from '@/components/MainUI';
 import SphereAnimation from '@/components/SphereAnimation';
 import styles from '@/styles/Home.module.css'
 
+
 export default function Home() {
   
   const [homepageTextVisible, setHomepageTextVisible] = useState(true);
@@ -29,28 +30,32 @@ export default function Home() {
         targets: homepageTextRef.current,
         translateY: '100%',
         opacity: 0,
-        duration: 600,
-        easing: 'easeInQuad',
+        duration: 1200,
+        easing: 'easeInQuart',
         complete: () => {
           setHomepageTextVisible(false)
+
           // then, drop the main UI down from the top of the page
           // -> start by toggling it visible. this will look jarring at first,
           // -> but we can smooth this out by setting the parent container's opacity to 0 in Home's CSS.
-          setShowMainUI(true);   
-          if (mainUIRef.current) {
-            anime({
-              targets:mainUIRef.current,
-              opacity: 1,             // start/end opacity states to fade the elements in
-              duration: 6000,
-              delay: 2000,
-              easing: 'easeInOutQuad',
-            });
-          }
+          setShowMainUI(true);
+
+          // we need to force a reflow, otherwise MainUI animation won't work since the component is fully rendered/available
+          requestAnimationFrame(() => {
+            if (mainUIRef.current) {
+              anime({
+                targets: mainUIRef.current,
+                translateY: ['0%', '150%'],
+                opacity: [0, 1],
+                duration: 1200,
+                delay: 900,
+                easing: 'easeOutQuart',
+              });
+            }
+          });
         }
       });
     }
-
-
   };
 
 
