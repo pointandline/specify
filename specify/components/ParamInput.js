@@ -78,7 +78,7 @@ const iconMapping = {
 }
 
 
-export default function RangeSlider({ param }) {
+export default function ParamInput({ param }) {
   const { name, range, tippingPoint, leftIcon, rightIcon } = param;
 
   const getIconComponent = (iconName) => {
@@ -114,7 +114,7 @@ export default function RangeSlider({ param }) {
       justifyContent="center"
       alignItems="center"
       width="100%"
-      className={styles.slider}
+      className={styles.paramInput}
     >
 
       {LeftIconComponent && (

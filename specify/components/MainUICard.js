@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import RangeSlider from '@/components/RangeSlider'
+import ParamInput from '@/components/ParamInput'
 
 import styles from '@/styles/MainUICard.module.css'
 
@@ -20,7 +20,7 @@ export default function MainUICard({ apiParam }) {
             {apiParam.name}
           </Typography>
 
-          <RangeSlider className={styles.slider} param={apiParam} />
+          <ParamInput param={apiParam} />
 
         </Container>
       </CardContent>
