@@ -33,6 +33,7 @@ const SphereAnimation = ({ onButtonClick }) => {
   const sphereEl = useRef(null);
   const spherePathEls = useRef([]);
   const sphereButtonContainerRef = useRef(null);
+  const animationWrapperRef = useRef(null);
 
   const fitElementToParent = (el, padding) => {
     let timeout = null;
@@ -113,6 +114,51 @@ const SphereAnimation = ({ onButtonClick }) => {
     }
   }, []);
 
+  // instead of static blur & mouseover unblur, we'll 'warble' the blur amount
+  // of the animated sphere, to make it more enticing to examine and click!
+  useEffect(() => {
+    const animationWrapper = animationWrapperRef.current;
+
+    // make sure the DOM element for animationWrapper is actually loaded
+
+    if (animationWrapper) {
+      // Start the blur "warble" animation immediately after page load
+      const blurAnimation = anime({
+        targets: animationWrapper,
+        filter: [
+          { value: 'blur(4em)', duration: 0 },    // Start with 4em blur (instant)
+          { value: 'blur(2em)', duration: 3000 },  // Transition to 2em blur
+          { value: 'blur(6em)', duration: 1000 },  // Then to 5em blur
+          { value: 'blur(3em)', duration: 1000 },  // Then to 3em blur
+          { value: 'blur(5em)', duration: 4000 },  // Back to 4em blur to complete the cycle
+        ],
+        loop: true,       // Infinite looping of the warble effect
+        easing: 'easeInQuad', // Smooth easing for the warble
+      });
+
+      // Handle mouse enter: clear the blur effect
+      const handleMouseEnter = () => {
+        blurAnimation.pause();  // Stop the animation
+        animationWrapper.style.filter = 'blur(0)';  // Set blur to 0 immediately
+      };
+
+      // Handle mouse leave: resume the blur warble animation
+      const handleMouseLeave = () => {
+        blurAnimation.play();   // Resume the animation
+      };
+
+      // Add event listeners for hover actions
+      animationWrapper.addEventListener('mouseenter', handleMouseEnter);
+      animationWrapper.addEventListener('mouseleave', handleMouseLeave);
+
+      // Cleanup event listeners on component unmount
+      return () => {
+        animationWrapper.removeEventListener('mouseenter', handleMouseEnter);
+        animationWrapper.removeEventListener('mouseleave', handleMouseLeave);
+      };
+    }
+  }, []);
+
 
   const handleButtonClick = () => {
     if (sphereButtonContainerRef.current) {
@@ -131,7 +177,7 @@ const SphereAnimation = ({ onButtonClick }) => {
   };
 
   return (
-    <div className={styles.animationWrapper}>
+    <div ref={animationWrapperRef} className={styles.animationWrapper}>
       <div className={styles.sphereAnimation} ref={sphereEl}>
         <div className={styles.sphereButtonContainer} ref={sphereButtonContainerRef}>
           <Button
