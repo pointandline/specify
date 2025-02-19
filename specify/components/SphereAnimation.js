@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import anime from 'animejs';
+import styles from '@/styles/SphereAnimation.module.css'
 
 const paths = [
   { d: "M361.604 361.238c-24.407 24.408-51.119 37.27-59.662 28.727-8.542-8.543 4.319-35.255 28.726-59.663 24.408-24.407 51.12-37.269 59.663-28.726 8.542 8.543-4.319 35.255-28.727 59.662z", strokeDasharray: "280.7113952636719" },
@@ -109,25 +110,27 @@ const SphereAnimation = () => {
   }, []);
 
   return (
-    <div className="sphere-animation" ref={sphereEl}>
-      <svg className="sphere" viewBox="0 0 440 440" stroke="rgba(80,80,80,.35)">
-        <defs>
-          <linearGradient id="sphereGradient" x1="25%" x2="25%" y1="0%" y2="75%">
-            <stop stopColor="#398F5A" offset="0%"></stop>
-            <stop stopColor="#317a4d" offset="50%"></stop>
-            <stop stopColor="#296640" offset="100%"></stop>
-          </linearGradient>
-        </defs>
-        {paths.map((path, index) => (
-          <path
-            key={index}
-            ref={el => spherePathEls.current[index] = el}
-            fill="url(#sphereGradient)"
-            d={path.d}
-            strokeDasharray={path.strokeDasharray}
-          />
-        ))}
-      </svg>
+    <div className={styles.animationWrapper}>
+      <div className={styles.sphereAnimation} ref={sphereEl}>
+        <svg className="sphere" viewBox="0 0 440 440" stroke="rgba(80,80,80,.35)">
+          <defs>
+            <linearGradient id="sphereGradient" x1="25%" x2="25%" y1="0%" y2="75%">
+              <stop stopColor="#398F5A" offset="0%"></stop>
+              <stop stopColor="#317a4d" offset="50%"></stop>
+              <stop stopColor="#296640" offset="100%"></stop>
+            </linearGradient>
+          </defs>
+          {paths.map((path, index) => (
+            <path
+              key={index}
+              ref={el => spherePathEls.current[index] = el}
+              fill="url(#sphereGradient)"
+              d={path.d}
+              strokeDasharray={path.strokeDasharray}
+            />
+          ))}
+        </svg>
+      </div>
     </div>
   );
 };
