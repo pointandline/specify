@@ -14,10 +14,11 @@ import HomepageText from '@/components/HomepageText'
 
 export default function Home() {
   
-  const [elementVisible, setElementVisible] = useState(true);
+  const [homepageTextVisible, setHomepageTextVisible] = useState(true);
   const homepageTextRef = useRef(null);
 
   const handleButtonClick = () => {
+    // animate the HomepageText sliding off the bottom of the screen
     if (homepageTextRef.current) {
       anime({
         targets: homepageTextRef.current,
@@ -25,7 +26,7 @@ export default function Home() {
         opacity: 0,
         duration: 600,
         easing: 'easeInQuad',
-        complete: () => setElementVisible(false),
+        complete: () => setHomepageTextVisible(false),
       });
     }
   };
@@ -43,7 +44,7 @@ export default function Home() {
         <main>
           <Container maxWidth='md'>
             <SphereAnimation onButtonClick={handleButtonClick} />
-            {elementVisible && (
+            {homepageTextVisible && (
               <Container ref={homepageTextRef}>
                 <HomepageText />
               </Container>
