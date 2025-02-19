@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
@@ -7,6 +7,7 @@ import Slider from '@mui/material/Slider'
 // it's gross to import component A's module-based CSS into component B,
 // but this should fix the styles not applying — the generated HTML classes are unique!
 import styles from '@/styles/MainUICard.module.css'
+
 // ughhhhh
 import {
   // slider icons in order of appearance
@@ -73,22 +74,29 @@ const iconMapping = {
 
 
 export default function RangeSlider({ param }) {
+  console.log(param)
   const { name, range, tippingPoint, leftIcon, rightIcon } = param;
 
   const getIconComponent = (iconName) => {
     return iconMapping[iconName] || null;
   }
 
-  // and boom we're done! since this is a component for each individual card,
-  // our icons get loaded in automatically according to our utils/constants.js mapping!
+  // boom, this is dynamic icon loading for our cards! since this component renders each
+  // individual card slider, our icons load in automatically according to our utils/constants.js mapping!
   const LeftIconComponent = getIconComponent(leftIcon);
   const RightIconComponent = getIconComponent(rightIcon);
 
-  // now we're going to animate the opacity of the L/R icons according to the slider position :)
-  const [sliderValue, setSliderValue] = useState(50)  // default midpoint state
+  // now we're going to animate the opacity of the L/R icons according to the slider position!
+  // some of the params' sliders/inputs will need to be customised, but let's set up a generic case first.
+  const [sliderValue, setSliderValue] = useState([25, 75])  // default midpoint state for range slider
+  const minSliderValue = 0;   // once we start passing real ranges, this will be:  range?.min || 0
+  const maxSliderValue = 100; // and this will be:  range?.max || 100
 
-  const leftIconOpacity = 0.1 + ((100 - sliderValue) / 100) * 0.7;  // min 0.1, max 0.9 opacity for left=0
-  const rightIconOpacity = 0.1 + (sliderValue / 100) * 0.7;  // min 0.1, max 0.9 opacity for right=100
+  // things got a little more complicated going from a single slider to a range, but check it out —
+  // we can just sliderValue[0]/[1] because this prebuilt component always passes (min, max) in order!
+  // otherwise, when the rightmost slider button became the leftmost, we would have had to evaluate min/max first.
+  const leftIconOpacity = 0.1 + ((100 - sliderValue[0]) / 100) * 0.8;
+  const rightIconOpacity = 0.1 + (sliderValue[1] / 100) * 0.8;
 
   const handleSliderChange = (event, newSliderValue) => {
     setSliderValue(newSliderValue);
@@ -114,7 +122,6 @@ export default function RangeSlider({ param }) {
       <Slider
         size="small"
         valueLabelDisplay="auto"
-        defaultValue={50}
         value={sliderValue}
         onChange={handleSliderChange}
         sx={{
@@ -122,8 +129,9 @@ export default function RangeSlider({ param }) {
           marginLeft: 1,
           marginRight: 1,
           '& .MuiSlider-valueLabel': {
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            color: 'text.primary.light',
+            backgroundColor: 'rgba(0,0,63,0.4)',
+            color: 'primary',
+            zIndex: 1,
           },
         }}
       />
