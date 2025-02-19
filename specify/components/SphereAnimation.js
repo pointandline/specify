@@ -123,8 +123,8 @@ const SphereAnimation = ({ onButtonClick }) => {
       anime({
         targets: sphereButtonContainerRef.current,
         opacity: 0,
-        filter: 'blur(100px)',
-        duration: 1200,
+        filter: 'blur(200px)',
+        duration: 2000,
         easing: 'easeInOutSine',
       });
     }

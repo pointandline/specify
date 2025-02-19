@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography'
 
 // homebrew imports
 import SphereAnimation from '@/components/SphereAnimation'
+import HomepageText from '@/components/HomepageText'
 
 
 export default function Home() {
@@ -44,12 +45,7 @@ export default function Home() {
             <SphereAnimation onButtonClick={handleButtonClick} />
             {elementVisible && (
               <Container ref={homepageTextRef}>
-                <Typography sx={{ fontWeight: 500 }} variant="h1" color="primary">Specify.</Typography>
-                <Divider />
-                <Box sx={{ textAlign: 'right' }}>
-                  <Typography sx={{ fontWeight: 200 }} variant="h6" color="primary.dark">Discover new Spotify music by harnessing</Typography>
-                  <Typography sx={{ fontWeight: 200 }} variant="h6" color="primary.dark">precise control over musical attributes.</Typography>
-                </Box>
+                <HomepageText />
               </Container>
             )}
             {/*
