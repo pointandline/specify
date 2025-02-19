@@ -5,7 +5,7 @@ const SpotifyAPIParamData = {
         [ "Duration", "duration_ms", null, "HourglassEmpty", "HourglassFull" ],                    // expressed in milliseconds
         [ "Key", "key", [ -1, 11 ], "Start", "KeyboardTab" ],                     // 0=C, 1=C#/Db, 2=D, etc. — no detected key returns -1
         [ "Tempo", "tempo", null, "FastRewind", "FastForward" ],                             // in BPM
-        [ "Mode", "mode", [ 0, 1 ], "KeyboardArrowDown", "KeyboardCapsLock" ],                     // 0=minor, 1=major, no in-between
+        [ "Mode", "mode", [ 0, 1 ], "KeyboardArrowDown", "KeyboardCapslock" ],                     // 0=minor, 1=major, no in-between
         [ "Time Signature", "time_signature", [ 3, 7 ], "Filter3", "Filter7" ], // as an estimation of x/4 time, e.g. 3 refers to 3/4 time
         [ "Loudness", "loudness", null, "VolumeDown", "VolumeUp" ],                       // in decibels; range is usually -60db to 0db, but not certain
     ],
