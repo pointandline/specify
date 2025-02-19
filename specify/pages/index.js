@@ -1,5 +1,6 @@
 import Head from 'next/head';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import anime from 'animejs';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -13,9 +14,20 @@ import SphereAnimation from '@/components/SphereAnimation'
 export default function Home() {
   
   const [elementVisible, setElementVisible] = useState(true);
+  const homepageTextRef = useRef(null);
+
   const handleButtonClick = () => {
-    setElementVisible(!elementVisible);
-  }
+    if (homepageTextRef.current) {
+      anime({
+        targets: homepageTextRef.current,
+        translateY: '100%',
+        opacity: 0,
+        duration: 600,
+        easing: 'easeInQuad',
+        complete: () => setElementVisible(false),
+      });
+    }
+  };
 
 
   return (
@@ -31,7 +43,7 @@ export default function Home() {
           <Container maxWidth='md'>
             <SphereAnimation onButtonClick={handleButtonClick} />
             {elementVisible && (
-              <Container>
+              <Container ref={homepageTextRef}>
                 <Typography sx={{ fontWeight: 500 }} variant="h1" color="primary">Specify.</Typography>
                 <Divider />
                 <Box sx={{ textAlign: 'right' }}>

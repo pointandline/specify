@@ -1,5 +1,5 @@
-import anime from 'animejs';
 import React, { useRef, useEffect } from 'react';
+import anime from 'animejs';
 
 import Button from '@mui/material/Button'
 
