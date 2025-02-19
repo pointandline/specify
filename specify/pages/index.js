@@ -31,22 +31,26 @@ export default function Home() {
         opacity: 0,
         duration: 600,
         easing: 'easeInQuad',
-        complete: () => setHomepageTextVisible(false),
+        complete: () => {
+          setHomepageTextVisible(false)
+          // then, drop the main UI down from the top of the page
+          // -> start by toggling it visible. this will look jarring at first,
+          // -> but we can smooth this out by setting the parent container's opacity to 0 in Home's CSS.
+          setShowMainUI(true);   
+          if (mainUIRef.current) {
+            anime({
+              targets:mainUIRef.current,
+              opacity: 1,             // start/end opacity states to fade the elements in
+              duration: 6000,
+              delay: 2000,
+              easing: 'easeInOutQuad',
+            });
+          }
+        }
       });
     }
 
-    // then, drop the main UI down from the top of the page
-    // -> start by toggling it visible. this will look jarring at first,
-    // -> but we can smooth this out by setting the parent container's opacity to 0 in Home's CSS.
-    setShowMainUI(true);   
-    if (mainUIRef.current) {
-      anime({
-        targets:mainUIRef.current,
-        opacity: [ 0, 1 ],             // start/end opacity states to fade the elements in
-        duration: 1000,
-        easing: 'easeOutBounce',
-      });
-    }
+
   };
 
 
