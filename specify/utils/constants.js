@@ -1,23 +1,24 @@
 const SpotifyAPIParamData = {
-    // [ readableName, spotifyResponseName, [ optionalMinValue, optionalMaxValue, optionalTippingPoint ], leftIcon, rightIcon ]
+    // [ readableName, spotifyFieldName, [ optionalMinValue, optionalMaxValue, optionalTippingPoint ], leftIcon, rightIcon ]
 
     basicParams: [
         [ "Duration", "duration_ms", null, "HourglassEmpty", "HourglassFull" ],                    // expressed in milliseconds
         [ "Key", "key", [ -1, 11 ], "Start", "KeyboardTab" ],                     // 0=C, 1=C#/Db, 2=D, etc. — no detected key returns -1
         [ "Tempo", "tempo", null, "FastRewind", "FastForward" ],                             // in BPM
         [ "Mode", "mode", [ 0, 1 ], "KeyboardArrowDown", "KeyboardCapslock" ],                     // 0=minor, 1=major, no in-between
-        [ "Time Signature", "time_signature", [ 3, 7 ], "Filter3", "Filter7" ], // as an estimation of x/4 time, e.g. 3 refers to 3/4 time
+        [ "Time Signature", "time_signature", [ 1, 11 ], "Filter3", "Filter7" ], // as an estimation of x/4 time, e.g. 3 refers to 3/4 time
         [ "Loudness", "loudness", null, "VolumeDown", "VolumeUp" ],                       // in decibels; range is usually -60db to 0db, but not certain
     ],
 
     musicalParams: [
-        [ "Acoustic", "acousticness", [ 0, 1 ], "Cable", "MicExternalOn" ],
+        [ "Acoustic", "acousticness", [ 0, 1 ], "Cable", "Hearing" ],
         [ "Danceable", "danceability", [ 0, 1 ], "Hotel", "SportsMartialArts" ],
         [ "Instrumental", "instrumentalness", [ 0, 1, 0.5 ], "RecordVoiceOver", "Straighten"],
         [ "Energetic", "energy", [ 0, 1 ], "Battery1Bar", "BatterySaver" ],             // intensity, activity - mostly tempo and loudness
-        [ "Vocal", "speechiness", [ 0, 1, 0.33 ], "CommentsDisabled", "Lyrics"],  // likelihood of spoken words in track, maybe redundant
+        [ "Vocal", "speechiness", [ 0, 1, [ 0.33, 0.66 ] ], "CommentsDisabled", "Lyrics"],  // likelihood of spoken words in track, maybe redundant
         [ "Mood", "valence", [ 0, 1 ], "SentimentVeryDissatisfied", "EmojiEmotions" ],                 // 0: mostly negative (sad/angry); 1: mostly positive (cheerful/euphoric)
         [ "Live", "liveness", [ 0, 1 ], "Album", "Groups" ],
+        [ "Popularity", "popularity", [ 0, 1 ], "PersonRemove", "GroupAdd" ]
     ],
 
     metadataParams: [

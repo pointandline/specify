@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
+import MuiInput from '@mui/material/Input'
 import Slider from '@mui/material/Slider'
 
 // it's gross to import component A's module-based CSS into component B,
@@ -24,7 +25,7 @@ import {
   VolumeDown,
   VolumeUp,
   Cable,
-  MicExternalOn,
+  Hearing,
   Hotel,
   SportsMartialArts,
   RecordVoiceOver,
@@ -37,6 +38,8 @@ import {
   EmojiEmotions,
   Album,
   Groups,
+  PersonRemove,
+  GroupAdd,
   // lock/unlock icons
   Lock,
   LockOpen
@@ -57,7 +60,7 @@ const iconMapping = {
   VolumeDown: VolumeDown,
   VolumeUp: VolumeUp,
   Cable: Cable,
-  MicExternalOn: MicExternalOn,
+  Hearing: Hearing,
   Hotel: Hotel,
   SportsMartialArts: SportsMartialArts,
   RecordVoiceOver: RecordVoiceOver,
@@ -70,11 +73,12 @@ const iconMapping = {
   EmojiEmotions: EmojiEmotions,
   Album: Album,
   Groups: Groups,
+  PersonRemove: PersonRemove,
+  GroupAdd: GroupAdd,
 }
 
 
 export default function RangeSlider({ param }) {
-  console.log(param)
   const { name, range, tippingPoint, leftIcon, rightIcon } = param;
 
   const getIconComponent = (iconName) => {
@@ -119,22 +123,22 @@ export default function RangeSlider({ param }) {
         </Box>
       )}
 
-      <Slider
-        size="small"
-        valueLabelDisplay="auto"
-        value={sliderValue}
-        onChange={handleSliderChange}
-        sx={{
-          opacity: 0.6,
-          marginLeft: 1,
-          marginRight: 1,
-          '& .MuiSlider-valueLabel': {
-            backgroundColor: 'rgba(0,0,63,0.4)',
-            color: 'primary',
-            zIndex: 1,
-          },
-        }}
-      />
+        <Slider
+          size="small"
+          valueLabelDisplay="auto"
+          value={sliderValue}
+          onChange={handleSliderChange}
+          sx={{
+            opacity: 0.6,
+            marginLeft: 1,
+            marginRight: 1,
+            '& .MuiSlider-valueLabel': {
+              backgroundColor: 'rgba(0,0,63,0.4)',
+              color: 'primary',
+              zIndex: 1,
+            },
+          }}
+        />
 
       {RightIconComponent && (
         <Box sx={{ mr: 1 }}>
@@ -145,9 +149,6 @@ export default function RangeSlider({ param }) {
     </Box>
   );
 }
-
-
-
 
 
 
