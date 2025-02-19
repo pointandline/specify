@@ -32,6 +32,7 @@ const paths = [
 const SphereAnimation = ({ onButtonClick }) => {
   const sphereEl = useRef(null);
   const spherePathEls = useRef([]);
+  const sphereButtonContainerRef = useRef(null);
 
   const fitElementToParent = (el, padding) => {
     let timeout = null;
@@ -112,15 +113,32 @@ const SphereAnimation = ({ onButtonClick }) => {
     }
   }, []);
 
+
+  const handleButtonClick = () => {
+    if (sphereButtonContainerRef.current) {
+      // First, we call the parent's onButtonClick, which hides the homepage text.
+      // It's the prop wepassed to the SphereAnimation functional component.
+      onButtonClick();
+      // Then, we go ahead and trigger the animation on the button itself.
+      anime({
+        targets: sphereButtonContainerRef.current,
+        opacity: 0,
+        filter: 'blur(100px)',
+        duration: 1200,
+        easing: 'easeInOutSine',
+      });
+    }
+  };
+
   return (
     <div className={styles.animationWrapper}>
       <div className={styles.sphereAnimation} ref={sphereEl}>
-        <div className={styles.sphereButtonContainer}>
+        <div className={styles.sphereButtonContainer} ref={sphereButtonContainerRef}>
           <Button
-            sx={{ borderRadius: '50%', textTransform: 'capitalize' }}
             className={styles.sphereButton}
+            sx={{ borderRadius: '50%', textTransform: 'capitalize' }}
             variant="outlined"
-            onClick={onButtonClick}
+            onClick={handleButtonClick}
           >
             Begin.
           </Button>
