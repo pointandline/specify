@@ -2,7 +2,9 @@ import Head from 'next/head';
 
 import Typography from '@mui/material/Typography'
 
+// homebrew imports
 import styles from '@/styles/Home.module.css'
+import SphereAnimation from '@/components/SphereAnimation'
 
 
 export default function Home() {
@@ -16,6 +18,9 @@ export default function Home() {
       </Head>
       <div>
         <main>
+          <div className="animation-wrapper">
+            <SphereAnimation />
+          </div>
           <Typography variant="h1" component="h1" color="primary">This is h1 text.</Typography>
           <Typography variant="h2" component="h2" color="primary">This is h2 text.</Typography>
           <Typography variant="h3" component="h3" color="primary">This is h3 text.</Typography>
