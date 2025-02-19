@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -105,8 +107,20 @@ export default function MainUICard({ apiParam }) {
     return iconMapping[iconName] || null;
   }
 
+  // and we're done! since this is a component for each individual card,
+  // our icons get loaded in automatically according to our utils/constants.js mapping!
   const LeftIconComponent = getIconComponent(leftIcon);
-  const RightIconComponent = getIconComponent(rightIcon);  
+  const RightIconComponent = getIconComponent(rightIcon);
+
+  // now we're going to animate the opacity of the L/R icons according to the slider position :)
+  const [sliderValue, setSliderValue] = useState(50)  // default midpoint state
+  const leftIconOpacity = 0.2 + ((100 - sliderValue) / 100) * 0.6;  // min 0.2, max 0.8 opacity for left=0
+  const rightIconOpacity = 0.2 + (sliderValue / 100) * 0.6;  // min 0.2, max 0.8 opacity for right=100
+
+  const handleSliderChange = (event, newSliderValue) => {
+    setSliderValue(newSliderValue);
+  };
+
 
 
   return (
@@ -123,15 +137,16 @@ export default function MainUICard({ apiParam }) {
 
             {LeftIconComponent && (
               <Box sx={{ mr: 1 }}>
-                <LeftIconComponent className={styles.muiIcon} />
+                <LeftIconComponent style={{ opacity: leftIconOpacity }} className={styles.muiIcon} />
               </Box>
             )}
 
             <Slider
               className={styles.slider}
               size="small"
-              defaultValue={50}
               valueLabelDisplay="auto"
+              defaultValue={50}
+              onChange={handleSliderChange}
               sx={{
                 opacity: 0.6,
                 '& .MuiSlider-valueLabel': {
@@ -143,7 +158,7 @@ export default function MainUICard({ apiParam }) {
 
             {RightIconComponent && (
               <Box sx={{ ml: 1 }}>
-                <RightIconComponent className={styles.muiIcon} />
+                <RightIconComponent style={{ opacity: rightIconOpacity }} className={styles.muiIcon} />
               </Box>
             )}
 

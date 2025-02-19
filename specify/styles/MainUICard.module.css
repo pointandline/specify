@@ -4,7 +4,7 @@
   transition: background-color 0.9s ease, opacity 0.9s ease !important;
   .slider,
   .muiIcon {
-    transition: 0.9s filter linear;
+    transition: 0.9s filter linear, opacity 0.3s ease;
     filter: blur(0.2em);
   }
 }
