@@ -1,9 +1,11 @@
 import Head from 'next/head';
 
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography'
 
 // homebrew imports
-import styles from '@/styles/Home.module.css'
 import SphereAnimation from '@/components/SphereAnimation'
 
 
@@ -18,15 +20,26 @@ export default function Home() {
       </Head>
       <div>
         <main>
-          <div className="animation-wrapper">
+          <Container maxWidth='md'>
             <SphereAnimation />
-          </div>
-          <Typography variant="h1" component="h1" color="primary">This is h1 text.</Typography>
-          <Typography variant="h2" component="h2" color="primary">This is h2 text.</Typography>
-          <Typography variant="h3" component="h3" color="primary">This is h3 text.</Typography>
-          <Typography variant="h4" component="h4" color="primary">This is h4 text.</Typography>
-          <Typography variant="body1" component="p" color="primary">This is primary text.</Typography>
-          <Typography variant="body2" component="p" color="secondary">This is secondary text.</Typography>
+            <Container>
+              <Typography sx={{ fontWeight: 500 }} variant="h1" color="primary">Specify.</Typography>
+              <Divider />
+              <Box sx={{ textAlign: 'right' }}>
+                <Typography sx={{ fontWeight: 200 }} variant="h6" color="primary.dark">Discover new Spotify music by harnessing</Typography>
+                <Typography sx={{ fontWeight: 200 }} variant="h6" color="primary.dark">precise control over musical attributes.</Typography>
+              </Box>
+            </Container>
+            {/*
+            <Typography variant="h2" component="h2" color="primary" align="right">This is h2 text.</Typography>
+            <Typography variant="h3" component="h3" color="primary" align="right">This is h3 text.</Typography>
+            <Typography variant="h4" component="h4" color="primary" align="right">This is h4 text.</Typography>
+            <Typography variant="h5" component="h4" color="primary" align="right">This is h5 text.</Typography>
+            <Typography variant="h6" component="h4" color="primary" align="right">This is h6 text.</Typography>
+            <Typography variant="body1" component="p" color="primary" align="right">This is primary text.</Typography>
+            <Typography variant="body2" component="p" color="secondary" align="right">This is secondary text.</Typography>
+            */}
+          </Container>
         </main>
       </div>
     </>
