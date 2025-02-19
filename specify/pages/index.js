@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -10,6 +11,13 @@ import SphereAnimation from '@/components/SphereAnimation'
 
 
 export default function Home() {
+  
+  const [elementVisible, setElementVisible] = useState(true);
+  const handleButtonClick = () => {
+    setElementVisible(!elementVisible);
+  }
+
+
   return (
     <>
       <Head>
@@ -21,15 +29,17 @@ export default function Home() {
       <div>
         <main>
           <Container maxWidth='md'>
-            <SphereAnimation />
-            <Container>
-              <Typography sx={{ fontWeight: 500 }} variant="h1" color="primary">Specify.</Typography>
-              <Divider />
-              <Box sx={{ textAlign: 'right' }}>
-                <Typography sx={{ fontWeight: 200 }} variant="h6" color="primary.dark">Discover new Spotify music by harnessing</Typography>
-                <Typography sx={{ fontWeight: 200 }} variant="h6" color="primary.dark">precise control over musical attributes.</Typography>
-              </Box>
-            </Container>
+            <SphereAnimation onButtonClick={handleButtonClick} />
+            {elementVisible && (
+              <Container>
+                <Typography sx={{ fontWeight: 500 }} variant="h1" color="primary">Specify.</Typography>
+                <Divider />
+                <Box sx={{ textAlign: 'right' }}>
+                  <Typography sx={{ fontWeight: 200 }} variant="h6" color="primary.dark">Discover new Spotify music by harnessing</Typography>
+                  <Typography sx={{ fontWeight: 200 }} variant="h6" color="primary.dark">precise control over musical attributes.</Typography>
+                </Box>
+              </Container>
+            )}
             {/*
             <Typography variant="h2" component="h2" color="primary" align="right">This is h2 text.</Typography>
             <Typography variant="h3" component="h3" color="primary" align="right">This is h3 text.</Typography>

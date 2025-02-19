@@ -29,7 +29,7 @@ const paths = [
   { d: "M109.698 109.332c-24.408 24.407-51.12 37.268-59.663 28.726-8.542-8.543 4.319-35.255 28.727-59.662 24.407-24.408 51.12-37.27 59.662-28.727 8.543 8.543-4.319 35.255-28.726 59.663z", strokeDasharray: "280.7110900878906" },
 ];
 
-const SphereAnimation = () => {
+const SphereAnimation = ({ onButtonClick }) => {
   const sphereEl = useRef(null);
   const spherePathEls = useRef([]);
 
@@ -116,7 +116,14 @@ const SphereAnimation = () => {
     <div className={styles.animationWrapper}>
       <div className={styles.sphereAnimation} ref={sphereEl}>
         <div className={styles.sphereButtonContainer}>
-          <Button sx={{ borderRadius: '50%', textTransform: 'capitalize' }} className={styles.sphereButton} variant="outlined" color="primary">Begin.</Button>
+          <Button
+            sx={{ borderRadius: '50%', textTransform: 'capitalize' }}
+            className={styles.sphereButton}
+            variant="outlined"
+            onClick={onButtonClick}
+          >
+            Begin.
+          </Button>
         </div>
         <svg className="sphere" viewBox="0 0 440 440" stroke="rgba(80,80,80,.35)">
           <defs>
