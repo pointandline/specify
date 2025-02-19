@@ -1,6 +1,5 @@
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
-
+import Typography from "@mui/material/Typography"
 
 export default function Home() {
   return (
@@ -11,9 +10,10 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={`${styles.page}`}>
-        Test.
-        <main className={styles.main}>
+      <div>
+        <Typography variant="body1" component="p" color="primary">This is primary text.</Typography>
+        <Typography variant="body2" component="p" color="secondary">This is secondary text.</Typography>
+        <main >
         </main>
       </div>
     </>
