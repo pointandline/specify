@@ -4,8 +4,8 @@ export const themeOptions = {
   palette: {
     type: 'light',
     primary: {
-      main: '#317a4d',
-      light: '#398f5f',
+      main: 'rgba(225, 225, 225, 0.55)',
+      light: 'rgba(225, 225, 225, 0.45)',
       dark: '#296640',
       contrastText: 'rgba(24,47,27,0.7)',
     },
