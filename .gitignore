@@ -16,7 +16,7 @@
 # next.js & our custom build directory
 /.next/
 /out/
-/.deploy/out/
+/.deploy/
 
 # production
 /build
