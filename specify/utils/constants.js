@@ -45,7 +45,7 @@ function buildSpotifyAPIParams(desiredSubgroupNames) {
                 // we'll always have these values:
                 const extractedElement = {
                     name: readableName,
-                    apiName: apiName,
+                    apiFieldName: apiName,
                     leftIcon: leftIcon,
                     rightIcon: rightIcon,
                 };
