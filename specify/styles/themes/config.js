@@ -4,7 +4,8 @@ export const themeOptions = {
   typography: {
     fontFamily: [
         '"Public Sans"',
-      ],
+        '"Funnel Sans"',
+      ].join(","),
   },
   palette: {
     type: 'light',
