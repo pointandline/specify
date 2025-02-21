@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
 
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
-import MuiInput from '@mui/material/Input'
-import Slider from '@mui/material/Slider'
+
+import { DefaultSlider } from '@/components/param-inputs/DefaultSlider'
+import { DurationInput } from '@/components/param-inputs/DurationInput'
+import { KeySelector } from '@/components/param-inputs/KeySelector'
+import { ModeSelector } from '@/components/param-inputs/ModeSelector'
+import { NumericalInput } from '@/components/param-inputs/NumericalInput'
+import { TimeSignatureSelector } from '@/components/param-inputs/TimeSignatureSelector'
+
 
 // it's gross to import component A's module-based CSS into component B,
 // but this should fix the styles not applying — the generated HTML classes are unique!
@@ -75,73 +80,59 @@ const iconMapping = {
   Groups: Groups,
   PersonRemove: PersonRemove,
   GroupAdd: GroupAdd,
-}
+};
+
+const paramInputMapping = {
+  // api_fieldname, ComponentName
+  "Duration": DurationInput,
+  "Key": KeySelector,
+  "Loudness": NumericalInput,
+  "Mode": ModeSelector,
+  "Tempo": NumericalInput,
+  "Time Signature": TimeSignatureSelector,
+};
 
 
-export default function ParamInput({ param }) {
-  const { name, range, tippingPoint, leftIcon, rightIcon } = param;
+export default function ParamInputWrapper({ param }) {
+  const { name, apiFieldName, range, tippingPoint, leftIcon, rightIcon } = param;
 
   const getIconComponent = (iconName) => {
     return iconMapping[iconName] || null;
   }
+
+  const ParamInputComponent = paramInputMapping[name] || DefaultSlider
 
   // boom, this is dynamic icon loading for our cards! since this component renders each
   // individual card slider, our icons load in automatically according to our utils/constants.js mapping!
   const LeftIconComponent = getIconComponent(leftIcon);
   const RightIconComponent = getIconComponent(rightIcon);
 
-  // now we're going to animate the opacity of the L/R icons according to the slider position!
-  // some of the params' sliders/inputs will need to be customised, but let's set up a generic case first.
-  const [sliderValue, setSliderValue] = useState([25, 75])  // default midpoint state for range slider
-  const minSliderValue = 0;   // once we start passing real ranges, this will be:  range?.min || 0
-  const maxSliderValue = 100; // and this will be:  range?.max || 100
+  const leftIconOpacity = 0.9
+  const rightIconOpacity = 0.1
 
-  // things got a little more complicated going from a single slider to a range, but check it out —
-  // we can just sliderValue[0]/[1] because this prebuilt component always passes (min, max) in order!
-  // otherwise, when the rightmost slider button became the leftmost, we would have had to evaluate min/max first.
-  const leftIconOpacity = 0.1 + ((100 - sliderValue[0]) / 100) * 0.8;
-  const rightIconOpacity = 0.1 + (sliderValue[1] / 100) * 0.8;
-
-  const handleSliderChange = (event, newSliderValue) => {
-    setSliderValue(newSliderValue);
-  };
 
   return (
 
-    //here's where we throw in our left & right icons flanking the Slider!
+    //here's where we throw in our left & right icons flanking the ParamInput!
     <Box
       display="flex"
       justifyContent="center"
       alignItems="center"
       width="100%"
-      className={styles.paramInput}
+      className={styles.ParamInputWrapper}
     >
 
       {LeftIconComponent && (
-        <Box sx={{ mr: 1 }}>
+        <Box sx={{ mr: 1.5 }}>
           <LeftIconComponent style={{ opacity: leftIconOpacity }} />
         </Box>
       )}
 
-        <Slider
-          size="small"
-          valueLabelDisplay="auto"
-          value={sliderValue}
-          onChange={handleSliderChange}
-          sx={{
-            opacity: 0.6,
-            marginLeft: 1,
-            marginRight: 1,
-            '& .MuiSlider-valueLabel': {
-              backgroundColor: 'rgba(0,0,63,0.4)',
-              color: 'primary',
-              zIndex: 1,
-            },
-          }}
-        />
+      {/* change me back to paraminputcomponent */}
+      <DefaultSlider param={param} />
 
       {RightIconComponent && (
-        <Box sx={{ mr: 1 }}>
+        <Box sx={{ ml: 1.5 }}>
           <RightIconComponent style={{ opacity: rightIconOpacity }} />
         </Box>
       )}
