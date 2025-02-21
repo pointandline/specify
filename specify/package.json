@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "gh-pages -d out"
+    "deploy": "gh-pages -d .deploy/out"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
