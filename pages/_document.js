@@ -7,7 +7,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
         {/* pathing fix for github pages favicon */}
-        <link rel="shortcut icon" type="image/x-icon" href="specify/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
