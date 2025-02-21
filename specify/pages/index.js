@@ -45,11 +45,11 @@ export default function Home() {
             if (mainUIRef.current) {
               anime({
                 targets: mainUIRef.current,
-                translateY: ['0%', '120%'],
+                translateY: ['0%', '135%'],
                 opacity: [0, 1],
-                duration: 1200,
-                delay: 900,
-                easing: 'easeOutQuart',
+                duration: 1300,
+                delay: 1200,
+                easing: 'easeOutBack',
               });
             }
           });
