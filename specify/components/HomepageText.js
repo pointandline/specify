@@ -9,8 +9,14 @@ export default function HomepageText () {
             <Typography sx={{ fontWeight: 500 }} variant="h1" color="primary">Specify.</Typography>
             <Divider sx={{ mb: 1.5 }} />
             <Box sx={{ textAlign: 'right' }}>
-              <Typography sx={{ fontWeight: 200 }} variant="h6" color="primary.dark">Discover new Spotify music by harnessing</Typography>
-              <Typography sx={{ fontWeight: 200 }} variant="h6" color="primary.dark">precise control over musical attributes.</Typography>
+              <Typography
+                sx={{ fontWeight: 100 }}
+                variant="h6"
+                color="primary.dark"
+            >
+                <b>Slip away from the silt of algorithmic quicksands;</b><br />
+                A curious arrow will whistle where <b>music awaits.</b><br />
+                fog cannot linger, carving paths through sound.</Typography>
             </Box>
         </>
 )}
