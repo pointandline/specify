@@ -2,10 +2,21 @@ import { createTheme, createMuiTheme } from '@mui/material/styles'
 
 export const themeOptions = {
   typography: {
+    // global:
     fontFamily: [
-        '"Public Sans"',
         '"Funnel Sans"',
+        '"Public Sans"',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
       ].join(","),
+    // variant-specific:
+    h1: {
+      fontFamily: '"Public Sans"',
+    },
+    h2: {
+      fontFamily: '"Public Sans"',
+    }
   },
   palette: {
     type: 'light',
