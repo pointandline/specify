@@ -1,6 +1,6 @@
 
 import Box from '@mui/material/Box'
-import IconButton from '@mui/material/IconButton'
+import Stack from '@mui/material/Stack'
 
 import { DefaultSlider } from '@/components/param-inputs/DefaultSlider'
 import { DurationInput } from '@/components/param-inputs/DurationInput'
@@ -114,30 +114,30 @@ export default function ParamInputWrapper({ param }) {
   return (
 
     //here's where we throw in our left & right icons flanking the ParamInput!
-    <Box
+    <Stack
+      className={styles.ParamInputWrapper}
       display="flex"
-      justifyContent="center"
+      direction="row"
+      justifyContent="space-between"
       alignItems="center"
       width="100%"
-      className={styles.ParamInputWrapper}
     >
 
       {LeftIconComponent && (
-        <Box sx={{ mr: 1.5 }}>
+        <Box sx={{ mr: 2 }}>
           <LeftIconComponent style={{ opacity: leftIconOpacity }} />
         </Box>
       )}
 
-      {/* change me back to paraminputcomponent */}
-      <DefaultSlider param={param} />
+      <ParamInputComponent param={param} sx={{ mx: 12 }} />
 
       {RightIconComponent && (
-        <Box sx={{ ml: 1.5 }}>
+        <Box sx={{ ml: 2 }}>
           <RightIconComponent style={{ opacity: rightIconOpacity }} />
         </Box>
       )}
 
-    </Box>
+    </Stack>
   );
 }
 
