@@ -29,8 +29,6 @@ export function DefaultSlider({ param }) {
       onChange={handleSliderChange}
       sx={{
         opacity: 0.6,
-        marginLeft: 1,
-        marginRight: 1,
         '& .MuiSlider-valueLabel': {
           backgroundColor: 'rgba(0,0,63,0.4)',
           color: 'primary',
